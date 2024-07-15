@@ -42,23 +42,20 @@ export default function Register() {
         initialValues={initialValues}
         validationSchema={SignInSchema}
         onSubmit={(values) => {
-          axios.post(("http://localhost:3001/users/register"), values).then((response) => {
+          axios.post("http://localhost:3001/users/register", values).then((response) => {
             if (!response.data.error) {
               axios.post("http://localhost:3001/users/login", values).then((secondResponse) => {
-                if (!response.data.error) {
-                  Cookies.set("accessToken", secondResponse.data.token)
-                  navigate.replace("/")
+                if (!secondResponse.data.error) {
+                  Cookies.set("accessToken", secondResponse.data.token);
+                  navigate.replace("/");
+                } else {
+                  setError(secondResponse.data.error);
                 }
-                else {
-                  setError(secondResponse.data.error)
-                }
-
-              })
+              });
+            } else {
+              setError(response.data.error);
             }
-            else {
-              setError(response.data.error)
-            }
-          })
+          });
         }}
       >
         <Form>
