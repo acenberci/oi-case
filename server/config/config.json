@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "159357",
+    "database": "odak-inovasyon",
+    "host": "127.0.0.1",
+    "port":"3306",
+    "dialect": "mysql"
+  } 
+}
