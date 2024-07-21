@@ -18,6 +18,7 @@ export default function Login() {
         Cookies.remove("accessToken")
       }
     })
+    else navigate.replace("/")
   }, []);
   const SignInSchema = Yup.object().shape({
     email: Yup.string()

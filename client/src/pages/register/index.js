@@ -7,18 +7,20 @@ import { useRouter } from 'next/router';
 import { HelperContext } from '@/helpers/HelperContext';
 
 export default function Register() {
-  const {toggleAuth } = useContext(HelperContext)
+  const { toggleAuth } = useContext(HelperContext)
   const navigate = useRouter()
   const [error, setError] = useState(null)
-  if(toggleAuth)useEffect(() => {
-    axios.get("http://localhost:3001/users/auth", { headers: { accessToken: Cookies.get("accessToken"), }, }).then((response) => {
+  useEffect(() => {
+    if (toggleAuth) axios.get("http://localhost:3001/users/auth", { headers: { accessToken: Cookies.get("accessToken"), }, }).then((response) => {
       if (!response.data.error) {
         navigate.replace("/")
       } else {
         Cookies.remove("accessToken")
       }
     })
-  }, []);
+    else navigate.replace("/")
+  }
+    , []);
   const initialValues = {
     name: "",
     surname: "",
