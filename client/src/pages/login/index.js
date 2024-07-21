@@ -30,7 +30,7 @@ export default function Login() {
     rememberMe: Yup.boolean()
   });
   return (
-    <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 py-8 px-5 bg-white rounded-md w-[25%] min-w-[320px] max-sm:w-full shadow-lg border-[1px] border-solid border-gray-200'>
+    <div className=' absolute  sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 py-8 px-5 bg-white rounded-md w-[25%] min-w-[320px] max-sm:w-full max-sm:top-1/2 max-sm:-translate-y-1/2 shadow-lg border-[1px] border-solid border-gray-200'>
       <h1 className='text-center text-2xl font-semibold mb-10'>Sign In</h1>
       <Formik
         initialValues={{ email: "", password: "", rememberMe: false }}
