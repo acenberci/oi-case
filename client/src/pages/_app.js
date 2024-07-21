@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }) {
   const [users, setUsers] = useState([]);
   const [focusedUser, setFocusedUser] = useState(null)
   const [editMode,setEditMode] = useState(false)
-  const [toggleAuth,] = useState(false)
+  const [toggleAuth,] = useState(true)
   return (
     <HelperContext.Provider value={{toggleAuth,focusedUser, setFocusedUser,editMode,setEditMode,users, setUsers}}>
       <Component {...pageProps} />

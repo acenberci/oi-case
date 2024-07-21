@@ -32,12 +32,13 @@ export default function Login() {
     <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 py-8 px-5 bg-white rounded-md w-[25%] min-w-[320px] max-sm:w-full shadow-lg border-[1px] border-solid border-gray-200'>
       <h1 className='text-center text-2xl font-semibold mb-10'>Sign In</h1>
       <Formik
-        initialValues={{ email: "", password: "" , rememberMe: false }}
+        initialValues={{ email: "", password: "", rememberMe: false }}
         validationSchema={SignInSchema}
         onSubmit={(values) => {
           axios.post("http://localhost:3001/users/login", values).then((response) => {
             if (!response.data.error) {
-              Cookies.set("accessToken", response.data.token)
+              if(values.rememberMe)Cookies.set('accessToken', response.data.token, { expires: 36500 });
+              else Cookies.set("accessToken", response.data.token)
               navigate.replace("/")
             }
             else {
@@ -60,7 +61,7 @@ export default function Login() {
               <ErrorMessage name='password' />
             </div>
             <label className='flex gap-1 items-center'>
-              <Field className="my-2 bg-gray-100" name="checkbox" type="checkbox" />
+              <Field className="my-2 bg-gray-100" name="rememberMe" type="checkbox" />
               <p>Remember me</p> 
             </label>
             <div className=''>

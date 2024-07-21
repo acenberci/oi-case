@@ -24,8 +24,8 @@ export default function ProductTable() {
         const updatedProduct = {
             ...e.oldData,
             ...e.newData,
-            total: e.newData.price * e.newData.quantity,
-            discountedTotal: (e.newData.price * e.newData.quantity) * ((100 - e.newData.discountPercentage) / 100),
+            total: parseFloat(e.newData.price * e.newData.quantity),
+            discountedTotal: parseFloat((e.newData.price * e.newData.quantity) * ((100 - e.newData.discountPercentage) / 100)),
         };
 
         axios.put('https://dummyjson.com/carts/' + focusedUser.id, {
