@@ -8,10 +8,10 @@ import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 
 export default function Home() {
-  const { editMode,toggleAuth } = useContext(HelperContext)
+  const { editMode, toggleAuth } = useContext(HelperContext)
   const navigate = useRouter()
   useEffect(() => {
-    if(toggleAuth)axios.get("http://localhost:3001/users/auth", { headers: { accessToken: Cookies.get("accessToken"), }, }).then((response) => {
+    if (toggleAuth) axios.get("http://localhost:3001/users/auth", { headers: { accessToken: Cookies.get("accessToken"), }, }).then((response) => {
       if (!response.data.error) {
         navigate.replace("/")
       } else {

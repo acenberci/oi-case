@@ -16,3 +16,19 @@
     outline: none;
     box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
 }
+.dx-datagrid-table-fixed tr[role="row"]:not(:nth-last-child(2)) {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+.dx-header-row {
+    background-color: #f5f5f5; 
+}
+.dx-row.dx-data-row:hover {
+    background-color: #e0e0e0;
+}
+.focused-row {
+    background-color: #e0e0e0;
+}
+.dx-focused{
+    background-color: #e0e0e0 !important;
+}

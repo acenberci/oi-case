@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import axios from 'axios';
 
 export default function UserDetails() {
-    const { focusedUser, setFocusedUser, setEditMode } = useContext(HelperContext)
+    const { focusedUser, setFocusedUser, setEditMode, setUsers } = useContext(HelperContext)
     const initialValues = {
         firstName: focusedUser.firstName,
         lastName: focusedUser.lastName,
@@ -30,9 +30,9 @@ export default function UserDetails() {
         addressCountry: focusedUser.address.country,
         email: focusedUser.email,
         phone: focusedUser.phone,
-        cryptoCoin: focusedUser.crypto&&focusedUser.crypto.coin,
-        cryptoWallet: focusedUser.crypto&&focusedUser.crypto.wallet,
-        cryptoNetwork: focusedUser.crypto&&focusedUser.crypto.network,
+        cryptoCoin: focusedUser.crypto && focusedUser.crypto.coin,
+        cryptoWallet: focusedUser.crypto && focusedUser.crypto.wallet,
+        cryptoNetwork: focusedUser.crypto && focusedUser.crypto.network,
         companyDepartment: focusedUser.company.department,
         companyName: focusedUser.company.name,
         companyTitle: focusedUser.company.title,
@@ -105,9 +105,8 @@ export default function UserDetails() {
                         }
                     })
                         .then(response => {
-                            console.log(response.data)
-                            setFocusedUser(response.data);
                             setEditMode(false)
+                            setFocusedUser(response.data);
                         })
                         .catch(error => {
                             console.error('There was an error!', error);
@@ -257,7 +256,10 @@ export default function UserDetails() {
                         </div>
                     </div>
                     <div className=" flex items-end justify-end gap-5">
-                        <button className=" w-24 h-10 rounded-md text-white bg-red-500 flex justify-center items-center">
+                        <button className=" w-24 h-10 rounded-md text-white bg-red-500 flex justify-center items-center" onClick={() => {
+                            setEditMode(false)
+                            setUsers(prev => prev.filter(user => user.id !== focusedUser.id));
+                        }}>
                             <TrashIcon className='size-6 mr-1'></TrashIcon>Delete</button>
                         <button className=" w-24 h-10 rounded-md text-white bg-blue-500 flex justify-center items-center" type='Submit'>
                             <PhotoIcon className='size-6 mr-1'>

@@ -40,6 +40,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
 
     const { email, password } = req.body
+    if(email&&password){
     const filteredUser = await Users.findOne({ where: { email: email } })
     bcrypt.compare(password, filteredUser.password, function (err, result) {
         if (result) {
@@ -48,7 +49,7 @@ router.post("/login", async (req, res) => {
         }
         else { res.json({ error: "Kullanıcı adı veya şifre hatalı." }) }
 
-    })
+    })}else res.json({error:"Enter e-mail and password."})
 
 })
 
